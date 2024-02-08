@@ -6,6 +6,7 @@ The title says it all. *Necessary* additional environment variable and volume mo
 
 - [x] Initial commit with fully replicable code example for WSL
 - [ ] Linux example
+- [ ] Figure out `DISPLAY` environment variable bypass (`vispy` requires it while EGL in general doesn't)
 - [ ] Upload image on Docker Hub
 
 # Usage
