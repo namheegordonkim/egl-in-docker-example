@@ -5,8 +5,8 @@ The title says it all. *Necessary* additional environment variable and volume mo
 # TODOs
 
 - [x] Initial commit with fully replicable code example for WSL
-- [ ] Linux example
-- [ ] Figure out `DISPLAY` environment variable bypass (`vispy` requires it while EGL in general doesn't)
+- [x] Linux example
+- [ ] Figure out `DISPLAY` environment variable bypass (on WSL2, `vispy` requires it while EGL in general doesn't)
 - [ ] Upload image on Docker Hub
 
 # Usage
@@ -39,19 +39,18 @@ docker run -it --rm --gpus all --mount type=bind,source=.,target=/code --net=hos
 [YOUR TAG] python code/render.py
 ```
 
-This should generate `out.png`, which looks like this:
-
-![alt text](expected_out.png)
-
-## On Linux
+## On Linux (Tested on Ubuntu 20.04 LTS Host)
 
 ```properties
 sudo docker run -it --rm --gpus all --mount type=bind,source=$(realpath .),target=/code --net=host \
---env DISPLAY \
---env LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/host \
--v /usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/host \
 [YOUR TAG] python code/render.py
 ```
+
+Initially there was an issue with OpenGL not recognizing the exposed GPU, but ensuring that correct drivers are installed solved the issue.
+
+These commands should generate `out.png`, which looks like this:
+
+![alt text](expected_out.png)
 
 ## Hardware Acceleration Validation
 
@@ -94,3 +93,8 @@ OpenGL profile mask: compatibility profile
 OpenGL ES profile version string: OpenGL ES 3.1 Mesa 22.2.5
 OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.10
 ```
+
+# How It Works (I Think)
+
+While Docker's GPU passthrough via `--gpus all` exposes the GPU, OpenGL does not recognize it by default unless the host machine's NVIDIA drivers are visible.
+This suspicion is still being tested, with some evidence coming from how copying the host's `libnvidia*` into one of the directories in the container's `LD_LIBRARY_PATH` successfully lets OpenGL recognize the GPU.

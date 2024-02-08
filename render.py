@@ -15,6 +15,7 @@ def main():
     view.camera.rect = 0, 0, 1, 1
     _ = scene.visuals.XYZAxis(parent=view.scene)
 
+    canvas.update()
     img = canvas.render()
     io.image.write_png(f"{os.path.dirname(os.path.abspath(__file__))}/out.png", img)
     canvas.close()
