@@ -1,4 +1,4 @@
-# EGL-in-Docker: A Minimal Docker Example for Hardware-Accelerated EGL Offline Render
+# EGL-in-Docker: A Minimal Docker Example for Hardware-Accelerated EGL Headless Render
 
 The title says it all. *Necessary* additional environment variable and volume mount options like `DISPLAY` and `/usr/lib/wsl` are included in the example command. Please refer to the `Dockerfile`, `entrypoint.sh`, and the `docker run` commands documented below to get ideas on using this repo for your own purpose.
 
