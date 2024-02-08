@@ -1,7 +1,7 @@
 # Take a look at Dockerfiles in
 # https://gitlab.com/nvidia/container-images/opengl
 # if you want to use another image (e.g. CUDA + CuDNN) and enable OpenGL
-FROM nvidia/opengl:1.2-glvnd-runtime
+FROM nvidia/opengl:1.2-glvnd-runtime-ubuntu20.04
 
 # fontconfig specifically for vispy
 RUN apt-get update && apt-get install -y wget fontconfig

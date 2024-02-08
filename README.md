@@ -45,11 +45,17 @@ This should generate `out.png`, which looks like this:
 
 ## On Linux
 
-TODO
+```properties
+sudo docker run -it --rm --gpus all --mount type=bind,source=$(realpath .),target=/code --net=host \
+--env DISPLAY \
+--env LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/host \
+-v /usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/host \
+[YOUR TAG] python code/render.py
+```
 
-## Hardware Acceleration Validation (On WSL2)
+## Hardware Acceleration Validation
 
-With `DISPLAY` and `/tmp/.X11-unix` inherited from WSL2, you can first run the container with `bash` instead of `python code/render.py` and run:
+With `DISPLAY` and `/tmp/.X11-unix` inherited from the host OS, as well as `libnvidia` locations being volume mounted, you can first run the container with `bash` instead of `python code/render.py` and run:
 
 ```properties
 apt install -y mesa-utils && glxinfo -B
