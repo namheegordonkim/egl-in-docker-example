@@ -14,4 +14,5 @@ RUN conda init
 RUN conda install -y python=3.9
 
 COPY entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
 ENTRYPOINT [ "./entrypoint.sh" ]

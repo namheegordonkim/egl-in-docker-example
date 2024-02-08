@@ -11,8 +11,16 @@ The title says it all. *Necessary* additional environment variable and volume mo
 
 # Usage
 
+First, build the image:
+
 ```properties
 docker build -t [YOUR TAG] .
+```
+
+Then, for acessing display:
+
+```properties
+xhost local:root
 ```
 
 Run the following `docker run` commands depending on your operating system.
