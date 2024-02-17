@@ -8,7 +8,7 @@ pip install pyopengl vispy
 # See also: https://forum.step.esa.int/t/snap-9-gui-mesa-glibcxx-error-in-headless-linux-server-using-vnc/36797/5
 mkdir /usr/lib/dri
 ln -s /usr/lib/x86_64-linux-gnu/dri/swrast_dri.so /usr/lib/dri/
-ln -s -f /opt/miniconda3/bin/../lib/libstdc++.so.6 /opt/miniconda3/bin/../lib/libstdc++.so.6
+ln -s -f /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /opt/miniconda3/bin/../lib/libstdc++.so.6
 
 exec "$@"
 
